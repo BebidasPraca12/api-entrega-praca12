@@ -1,9 +1,7 @@
-const verificarApiKey = require("./middleware/auth");
 const express = require("express");
 const cors = require("cors");
-
+const verificarApiKey = require("./middleware/auth");
 const entregaRoutes = require("./routes/entrega");
-
 const app = express();
 
 app.use(cors());
