@@ -1,0 +1,65 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API de Entrega Praça12",
+    "description": "Calcula taxa de entrega do Bebidas Praça12 pelo endereço do cliente.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api-entrega-praca12.onrender.com"
+    }
+  ],
+  "paths": {
+    "/calcular-entrega": {
+      "post": {
+        "operationId": "calcularEntrega",
+        "summary": "Calcula taxa de entrega",
+        "description": "Recebe o endereço do cliente e retorna distância, tempo estimado e taxa de entrega.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endereco_cliente": {
+                    "type": "string",
+                    "description": "Endereço completo do cliente com rua, número, bairro, cidade, estado e país.",
+                    "example": "Centro, Piraju, SP, Brasil"
+                  }
+                },
+                "required": ["endereco_cliente"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Taxa calculada com sucesso"
+          },
+          "401": {
+            "description": "API Key ausente ou inválida"
+          },
+          "500": {
+            "description": "Erro ao calcular a entrega"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+}
