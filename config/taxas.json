@@ -1,0 +1,9 @@
+{
+  "distancia_maxima_km": 8,
+  "faixas": [
+    { "ate_km": 1, "taxa": 5 },
+    { "ate_km": 3, "taxa": 7 },
+    { "ate_km": 5, "taxa": 10 },
+    { "ate_km": 8, "taxa": 15 }
+  ]
+}
