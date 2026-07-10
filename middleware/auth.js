@@ -12,9 +12,9 @@ function carregarChavesValidas() {
 }
 
 function verificarApiKey(req, res, next) {
-  if (req.path === "/") {
-    return next();
-  }
+  if (req.path === "/" || req.path.startsWith("/docs")) {
+  return next();
+}
 
   const apiKeyRecebida = req.headers["x-api-key"];
 

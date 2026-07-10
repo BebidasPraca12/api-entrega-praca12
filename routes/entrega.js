@@ -5,7 +5,36 @@ const { calcularTaxa } = require("../services/taxa");
 const { buscarCoordenadas, calcularDistanciaRota } = require("../services/mapa");
 
 const ENDERECO_LOJA = "Praça Ataliba Leonel, 12, Piraju, SP, Brasil";
-
+/**
+ * @swagger
+ * /calcular-entrega:
+ *   post:
+ *     summary: Calcula a taxa de entrega
+ *     description: Recebe o endereço do cliente, calcula a distância até o Praça12 e retorna a taxa de entrega.
+ *     security:
+ *       - ApiKeyAuth: []
+ *     tags:
+ *       - Entrega
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - endereco_cliente
+ *             properties:
+ *               endereco_cliente:
+ *                 type: string
+ *                 example: Centro, Piraju, SP, Brasil
+ *     responses:
+ *       200:
+ *         description: Taxa calculada com sucesso
+ *       401:
+ *         description: API Key inválida ou não informada
+ *       500:
+ *         description: Erro ao calcular entrega
+ */
 router.post("/calcular-entrega", async (req, res) => {
   try {
     const { endereco_cliente } = req.body;
